@@ -1,0 +1,81 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Homework3.OrderManagementPage"
+             Title="Order Management">
+	<ScrollView>
+		<StackLayout Spacing="20" Padding="30">
+			<Label Text="Enter Order Number:"/>
+
+			<Entry Placeholder="Order Number" Text="{Binding OrderNumberToLookup}"/>
+
+			<!-- Button to Load Order -->
+			<Button Text="Load Order" Command="{Binding LoadOrderCommand}"/>
+
+			<!-- Display Order Details -->
+			<Label Text="Order Details:" FontAttributes="Bold"/>
+
+			<Label Text="Number:"
+                   IsVisible="{Binding HasSelectedOrder}"/>
+			
+			<Label Text="{Binding SelectedOrder.Number}"
+                   IsVisible="{Binding HasSelectedOrder}"/>
+			
+			<Label Text="State:"
+                   IsVisible="{Binding HasSelectedOrder}"/>
+			
+			<Label Text="{Binding SelectedOrder.State}"
+                   IsVisible="{Binding HasSelectedOrder}"/>
+			
+			<Label Text="Order Date:"
+                   IsVisible="{Binding HasSelectedOrder}"/>
+			
+			<Label Text="{Binding SelectedOrder.OrderDate, StringFormat='{0:dd/MM/yyyy}'}"
+                   IsVisible="{Binding HasSelectedOrder}"/>
+			
+			<Label Text="Customer ID:"
+                   IsVisible="{Binding HasSelectedOrder}"/>
+			
+			<Label Text="{Binding SelectedOrder.CustomerId}"
+                   IsVisible="{Binding HasSelectedOrder}"/>
+
+
+			<ListView ItemsSource="{Binding OrderDetailsCollection}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Padding="10">
+								<Label Text="{Binding ProductName}" WidthRequest="100"/>
+								<Label Text="{Binding Amount}" WidthRequest="100"/>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+
+
+			<Label Text="Create order"/>
+
+			<Picker Title="Select a Customer"
+                    ItemsSource="{Binding Customers}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCustomer}"/>
+			<Button Text="Create New Order" Command="{Binding CreateOrderCommand}"/>
+
+			<Label Text="Orders"/>
+			<ListView ItemsSource="{Binding Orders}">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Padding="10">
+								<Label Text="{Binding Number}" WidthRequest="100"/>
+								<Label Text="{Binding State}" WidthRequest="100"/>
+								<Label Text="{Binding OrderDate, StringFormat='{0:dd/MM/yyyy}'}" WidthRequest="100"/>
+								<Label Text="{Binding CustomerName}" WidthRequest="100"/>
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackLayout>
+	</ScrollView>
+</ContentPage>

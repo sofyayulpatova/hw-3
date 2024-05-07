@@ -8,7 +8,9 @@
 
             // MainPage = new AppShell();
 
-            MainPage = serviceProvider.GetService<MainPage>();
+            var _page = serviceProvider.GetService<MainPage>();
+
+            MainPage = new NavigationPage(_page);
         }
     }
 }

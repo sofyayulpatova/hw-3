@@ -1,0 +1,50 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Homework3.ProductManagementPage"
+             Title="Products Management">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+
+            <Label Text="Create product" />
+            <Entry Placeholder="Product Name" Text="{Binding Name}"/>
+            <Entry Placeholder="Product MPN" Text="{Binding Mpn}"/>
+            <Entry Placeholder="Price" Text="{Binding Price}" Keyboard="Numeric"/>
+
+            <Button Text="Create Product" Command="{Binding CreateProductCommand}"/>
+
+            <!-- MPN Entry -->
+
+            <Label Text="edit product -> enter mpn" />
+            <Entry x:Name="mpnEntry" Placeholder="Enter MPN" Text="{Binding ProductMpn}"/>
+            <Button x:Name="buttonLoad" Text="Load Product" Command="{Binding LoadProductCommand}"/>
+            <Label Text="{Binding DeletionMessage}" />
+            <Button x:Name="buttonDelete" Text="Delete Product" Command="{Binding DeleteProductCommand}" />
+
+
+            <!-- Product Editing Fields -->
+            <Label Text="edit product" />
+            <Entry x:Name="productNameEntry" Placeholder="Product Name" Text="{Binding SelectedProduct.Name}" IsVisible="{Binding SelectedProduct, Converter={StaticResource NullToVisibilityConverter}}"/>
+            <Entry x:Name="productPriceEntry" Placeholder="Price" Text="{Binding SelectedProduct.Price}" Keyboard="Numeric" IsVisible="{Binding SelectedProduct, Converter={StaticResource NullToVisibilityConverter}}"/>
+            <Button x:Name="buttonSave" Text="Save Changes" Command="{Binding SaveChangesCommand}" IsVisible="{Binding SelectedProduct, Converter={StaticResource NullToVisibilityConverter}}"/>
+
+
+
+
+            <Label Text="Products" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
+            <ListView x:Name="ProductsList" ItemsSource="{Binding Products}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding .}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

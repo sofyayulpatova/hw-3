@@ -1,10 +1,13 @@
-﻿namespace Homework3.Model
+﻿namespace Homework3.Model;
+public class Customer
 {
-    public class Customer
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
+    public string? Email { get; set; }
+    public override string ToString()
     {
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
-        public string? Email { get; set; }
+        return $"name is: {Name}, surname is: {Surname}, email is: {Email}";
     }
+
 }

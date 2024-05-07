@@ -1,0 +1,36 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Homework3.CustomerManagementPage"
+             Title="Customer Management">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+            <Label Text="Customers"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <Button Text="Create Customer"
+                Clicked="OnCreateCustomerClicked"/>
+
+            <Button Text="Update customer"
+                Clicked="OnUpdateCustomerClicked"/>
+
+            <Button Text="Delete customer"
+                Clicked="OnDeleteCustomerClicked"/>
+
+            <ListView x:Name="CustomersList" ItemsSource="{Binding Customers}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding .}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+            
+
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

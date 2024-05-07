@@ -1,0 +1,73 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Homework3.ObjectCreationPage"
+             Title="Data Creation">
+
+    <Grid Padding="30"
+          ColumnDefinitions="*,*"
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto">
+        
+        <!-- Product Creation Section -->
+        <Label Grid.Column="0" Grid.Row="0"
+               Text="Create New Product"
+               FontAttributes="Bold" />
+        <Entry Grid.Column="0" Grid.Row="1"
+               x:Name="ProductNameEntry"
+               Placeholder="Product Name" />
+        <Entry Grid.Column="0" Grid.Row="2"
+               x:Name="ProductPriceEntry"
+               Placeholder="Price"
+               Keyboard="Numeric" />
+        <Entry Grid.Column="0" Grid.Row="3"
+               x:Name="ProductMpnEntry"
+               Placeholder="Product Mpn" />
+        <Button Grid.Column="0" Grid.Row="4"
+                Text="Add Product"
+                Clicked="AddProductClicked" /> 
+        
+        <!-- Customer Creation Section 
+        <Label Grid.Column="1" Grid.Row="0"
+               Text="Create New Customer"
+               FontAttributes="Bold" />
+        <Entry Grid.Column="1" Grid.Row="1"
+               x:Name="CustomerNameEntry"
+               Placeholder="Name" />
+        <Entry Grid.Column="1" Grid.Row="2"
+               x:Name="CustomerSurnameEntry"
+               Placeholder="Surname" />
+        <Entry Grid.Column="1" Grid.Row="3"
+               x:Name="CustomerEmailEntry"
+               Placeholder="Email"
+               Keyboard="Email" />
+        <Button Grid.Column="1" Grid.Row="4"
+                Text="Add Customer"
+                Clicked="AddCustomerClicked" />-->
+    
+    <!-- Customer Selection for Order -->
+    <Label Grid.Column="0" Grid.Row="5"
+           Text="Choose a Customer"
+           FontAttributes="Bold" />
+    <Entry Grid.Column="0" Grid.Row="6"
+           x:Name="CustomerIdEntry"
+           Placeholder="Customer ID"/>
+
+    <!-- Product Details Entry for Order -->
+    <Label Grid.Column="0" Grid.Row="7"
+           Text="Enter Product Details"
+           FontAttributes="Bold" />
+    <Label Grid.Column="0" Grid.Row="8"
+           Text="Format: Mpn; Quantity (Use ';' as separator, '/n' for new line for multiple products)" />
+    <Editor Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2"
+            x:Name="ProductDetails"
+            Placeholder="Mpn; Quantity"
+            FontSize="Medium"
+            HeightRequest="100" />  <!-- Adjusted for larger input space -->
+        
+    <!-- Submit Order Button -->
+    <Button Grid.Column="0" Grid.Row="10"
+            Text="Submit Order"
+            Clicked="OrderCreateClicked" />
+
+    </Grid>
+
+</ContentPage>

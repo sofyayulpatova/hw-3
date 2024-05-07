@@ -1,30 +1,30 @@
-﻿namespace Homework3
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace Homework3
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        private IDatabaseManager _db;
 
-        private DatabaseManager? _db;
-
-        public MainPage(DatabaseManager databaseManager)
+        public MainPage(IDatabaseManager databaseManager)
         {
             InitializeComponent();
 
             _db = databaseManager;
         }
 
-        private async void OnCounterClicked(object sender, EventArgs e)
+        private async void OnCustomerManagementClick(object sender, EventArgs e)
         {
-            var customers = await this._db.GetCustomers();
-
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            await Navigation.PushAsync(new CustomerManagementPage(_db));
+        }
+        private async void OnProductManagementClick(object sender, EventArgs e)
+        {
+        
+            await Navigation.PushAsync(new ProductManagementPage(_db));
+        }
+        private async void OnOrderManagementClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new OrderManagementPage(_db));
         }
     }
 

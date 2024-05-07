@@ -1,32 +1,33 @@
 ﻿using MvvmHelpers;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Homework3.Model;
 
 namespace Homework3;
 
 public class CustomerViewModel : BaseViewModel
 {
-    private readonly DatabaseManager _db;
-    public ObservableCollection<string> Items { get; }
+    private readonly IDatabaseManager _db;
 
-    public CustomerViewModel(DatabaseManager db)
+    public ObservableCollection<Customer> Customers { get; private set; } = new();
+
+
+    public CustomerViewModel(IDatabaseManager db)
     {
         _db = db;
 
-        Items = new ObservableCollection<string>();
-        
-        LoadData();
+        LoadCustomers();
     }
 
-    public async Task<List<Customer>> LoadData()
+    private async void LoadCustomers()
     {
-        var customers = await _db.GetCustomers();
+        var customersList = await this._db.GetCustomers();
 
-        return customers;
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            Customers = new ObservableCollection<Customer>(customersList);
+            OnPropertyChanged(nameof(Customers));
+        });
     }
+
+
 }

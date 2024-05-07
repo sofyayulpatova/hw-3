@@ -17,7 +17,8 @@ namespace Homework3
 
     		builder.Logging.AddDebug();
 
-            builder.Services.AddSingleton(new DatabaseManager());
+            builder.Services.AddSingleton<IDatabaseManager, DatabaseManager>();
+            builder.Services.AddTransient<CustomerManagementPage>();
             builder.Services.AddTransient<MainPage>();
 
 
